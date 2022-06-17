@@ -1,16 +1,16 @@
-#include "patcher.hpp"
+#include "ips.hpp"
 #include "util.hpp"
-bool Patcher::load(const char* romName, const char* patchName){
+bool IPS::load(const char* romName, const char* patchName){
 	this->rom = this->loadFile(romName);
 	this->ips = this->loadFile(patchName);
 	return !(this->rom.empty() || this->ips.empty());
 }
-bool Patcher::write(const char* filename){
+bool IPS::write(const char* filename){
 	std::ofstream fout(filename, std::ios::binary);
 	fout.write(&this->rom[0], this->rom.size());
 	return fout.good();
 }
-bool Patcher::patch(){
+bool IPS::patch(){
 	char szOffset[OFFSET_SIZE], szSize[SIZE_SIZE];
 	size_t offset, size;
 	if(std::memcmp(&(this->ips[0]), "PATCH", 5) != 0)
@@ -35,7 +35,7 @@ bool Patcher::patch(){
 	}
 	return true;
 }
-std::vector<char> Patcher::loadFile(const char* filename){
+std::vector<char> IPS::loadFile(const char* filename){
 	std::ifstream fin(filename, std::ios::binary);
 	std::vector<char> output;
 	if(!fin.is_open())
@@ -48,12 +48,12 @@ std::vector<char> Patcher::loadFile(const char* filename){
 	fin.read(&output[0], size);
 	return output;
 }
-void Patcher::reg(size_t offset, size_t size, size_t index){
+void IPS::reg(size_t offset, size_t size, size_t index){
 	size_t end = offset + size;
 	for(size_t i=offset; i<end; ++i)
 		this->rom[i] = this->ips[index++];
 }
-void Patcher::rle(size_t offset, size_t size, char byte){
+void IPS::rle(size_t offset, size_t size, char byte){
 	size_t end = offset + size;
 	for(size_t i=offset; i<end; ++i)
 		this->rom[i] = byte;

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "patcher.hpp"
+#include "ips.hpp"
 #include "util.hpp"
 int main(int argc, char** argv){
-	Patcher patcher;
+	IPS patcher;
 	if(argc < 4){
 		std::printf("Proper usage: %s rom patch outfile\n", argv[0]);
 		errorAndExit(RET_ERR_ARG, "Not enough arguments");

@@ -1,5 +1,5 @@
-#ifndef UTIL
-#define UTIL
+#ifndef UTIL_HPP
+#define UTIL_HPP
 #include <iostream>
 #define RET_ERR_ARG 1
 #define RET_ERR_PATCH 2

@@ -1,11 +1,11 @@
-#ifndef PATCHER
-#define PATCHER
+#ifndef PATCHER_HPP
+#define PATCHER_HPP
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <cstring>
 #include "util.hpp"
-class Patcher{
+class IPS{
 	std::vector<char> rom, ips;
 	static constexpr short OFFSET_SIZE = 3, SIZE_SIZE = 2;
 public:
