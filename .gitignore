@@ -4,3 +4,5 @@ cipsp
 *.sfc
 *.smc
 *.o
+test
+build

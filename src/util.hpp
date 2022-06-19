@@ -1,10 +1,12 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 #include <iostream>
+#include <cstring>
 #define RET_ERR_ARG 1
 #define RET_ERR_PATCH 2
 #define RET_ERR_LOAD 3
 #define RET_ERR_WRITE 4
+#define RET_ERR_ALLOC 5
 #define BYTE3_UINT(bp) \
 	(((unsigned long)(bp)[0] << 16) & 0xFF0000) | \
 	(((unsigned long)(bp)[1] << 8) & 0x00FF00) | \
